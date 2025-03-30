@@ -1,2 +1,8 @@
 .env
 __pycache__/
+temp_*
+temp_extracted/
+*.zip
+*.csv
+*.json
+*.txt

@@ -2,5 +2,4 @@ fastapi
 python-multipart
 openai
 pandas
-python-dotenv
 uvicorn

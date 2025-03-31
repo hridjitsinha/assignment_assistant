@@ -1,8 +1,26 @@
+# Ignore environment variables
 .env
+.env.local
+.env.production
+.env.development
+
+# Ignore Python bytecode
 __pycache__/
-temp_*
-temp_extracted/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore logs
+logs/
+*.log
+*.out
+
+# Ignore virtual environment
+venv/
+.env/
+.venv/
+pip-log.txt
+
+# Ignore temporary files
+temp_files/
 *.zip
-*.csv
-*.json
-*.txt

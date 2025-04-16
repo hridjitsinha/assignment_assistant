@@ -1,26 +1,22 @@
-# Ignore environment variables
-.env
-.env.local
-.env.production
-.env.development
+# Virtual environment
+venv/
 
-# Ignore Python bytecode
+# Uploads directory
+uploads/
+
+# Python cache files
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Ignore logs
-logs/
+# VS Code settings
+.vscode/
+
+# Ignore environment files (optional)
+.env
+*.env
+
+# Ignore logs and temp files (optional)
 *.log
-*.out
-
-# Ignore virtual environment
-venv/
-.env/
-.venv/
-pip-log.txt
-
-# Ignore temporary files
-temp_files/
-*.zip
+*.tmp

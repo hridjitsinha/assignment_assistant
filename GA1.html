@@ -1,0 +1,2102 @@
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDS 2025 Jan GA1 - Development Tools</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+        integrity="sha384-XGjxtQfXaH2tnPFa9x+ruJTuLE3Aa6LhHSWRr1XeTyhezb4abCG4ccI5AkVDxqC+" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/styles/default.min.css"
+        integrity="sha384-4Y0nObtF3CbKnh+lpzmAVdAMtQXl+ganWiiv73RcGVdRdfVIya8Cao1C8ZsVRRDz" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.10.0/build/styles/github-dark.min.css">
+    <script src="https://browser.sentry-cdn.com/8.55.0/bundle.tracing.replay.min.js" crossorigin="anonymous"></script>
+    <script src="https://js.sentry-cdn.com/f9b738b8a1bfb42581e666ab0a7dbb22.min.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            padding-top: 64px;
+        }
+
+        body[data-status="admin"] #navbar {
+            background-color: var(--bs-primary) !important;
+
+            .navbar-brand::before {
+                content: "[Admin] ";
+            }
+        }
+
+        body[data-status="running"] #navbar {
+            background-color: var(--bs-success) !important;
+        }
+
+        body[data-status="ended"] #navbar {
+            background-color: var(--bs-danger) !important;
+        }
+
+        [id] {
+            scroll-margin-top: 4rem;
+        }
+
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        textarea::-webkit-scrollbar-track {
+            background: #333;
+        }
+
+        textarea::-webkit-scrollbar-thumb {
+            background: #666;
+            cursor: default;
+        }
+
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        /* Add a YouTube icon on top of all YouTube links with images */
+        a[href*="youtu"]:has(img[src*="ytimg"]) {
+            position: relative;
+            display: inline-block;
+        }
+
+        a[href*="youtu"]:has(img[src*="ytimg"])::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-youtube" viewBox="0 0 16 16"><path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2z"/><path d="M6.4 5.209v4.818l4.157-2.408z" fill="white"/></svg>') no-repeat center center;
+            background-size: contain;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+    </style>
+    <style id="googleidentityservice_button_styles">
+        .qJTHM {
+            -webkit-user-select: none;
+            color: #202124;
+            direction: ltr;
+            -webkit-touch-callout: none;
+            font-family: "Roboto-Regular", arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            font-weight: 400;
+            margin: 0;
+            overflow: hidden;
+            -webkit-text-size-adjust: 100%
+        }
+
+        .ynRLnc {
+            left: -9999px;
+            position: absolute;
+            top: -9999px
+        }
+
+        .L6cTce {
+            display: none
+        }
+
+        .bltWBb {
+            word-break: break-all
+        }
+
+        .hSRGPd {
+            color: #1a73e8;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none
+        }
+
+        .Bz112c-W3lGp {
+            height: 16px;
+            width: 16px
+        }
+
+        .Bz112c-E3DyYd {
+            height: 20px;
+            width: 20px
+        }
+
+        .Bz112c-r9oPif {
+            height: 24px;
+            width: 24px
+        }
+
+        .Bz112c-uaxL4e {
+            -webkit-border-radius: 10px;
+            border-radius: 10px
+        }
+
+        .LgbsSe-Bz112c {
+            display: block
+        }
+
+        .S9gUrf-YoZ4jf,
+        .S9gUrf-YoZ4jf * {
+            border: none;
+            margin: 0;
+            padding: 0
+        }
+
+        .fFW7wc-ibnC6b>.aZ2wEe>div {
+            border-color: #4285f4
+        }
+
+        .P1ekSe-ZMv3u>div:nth-child(1) {
+            background-color: #1a73e8 !important
+        }
+
+        .P1ekSe-ZMv3u>div:nth-child(2),
+        .P1ekSe-ZMv3u>div:nth-child(3) {
+            background-image: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, .7)), linear-gradient(to right, #1a73e8, #1a73e8) !important
+        }
+
+        .haAclf {
+            display: inline-block
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe {
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: background-color .218s, border-color .218s;
+            transition: background-color .218s, border-color .218s;
+            -webkit-user-select: none;
+            -webkit-appearance: none;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #dadce0;
+            color: #3c4043;
+            cursor: pointer;
+            font-family: "Google Sans", arial, sans-serif;
+            font-size: 14px;
+            height: 40px;
+            letter-spacing: 0.25px;
+            outline: none;
+            overflow: hidden;
+            padding: 0 12px;
+            position: relative;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+            width: auto
+        }
+
+        @media screen and (-ms-high-contrast:active) {
+            .nsm7Bb-HzV7m-LgbsSe {
+                border: 2px solid windowText;
+                color: windowText
+            }
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe {
+            font-size: 14px;
+            height: 32px;
+            letter-spacing: 0.25px;
+            padding: 0 10px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe {
+            font-size: 11px;
+            height: 20px;
+            letter-spacing: 0.3px;
+            padding: 0 8px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe {
+            padding: 0;
+            width: 40px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.pSzOP-SxQuSe {
+            width: 32px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.purZT-SxQuSe {
+            width: 20px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK {
+            -webkit-border-radius: 20px;
+            border-radius: 20px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK.pSzOP-SxQuSe {
+            -webkit-border-radius: 16px;
+            border-radius: 16px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK.purZT-SxQuSe {
+            -webkit-border-radius: 10px;
+            border-radius: 10px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc {
+            border: none;
+            color: #fff
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.MFS4be-v3pZbf-Ia7Qfc {
+            background-color: #1a73e8
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.MFS4be-JaPV2b-Ia7Qfc {
+            background-color: #202124;
+            color: #e8eaed
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+            height: 18px;
+            margin-right: 8px;
+            min-width: 18px;
+            width: 18px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+            height: 14px;
+            min-width: 14px;
+            width: 14px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+            height: 10px;
+            min-width: 10px;
+            width: 10px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+            margin-left: 8px;
+            margin-right: -4px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+            margin: 0;
+            padding: 10px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+            padding: 8px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+            padding: 4px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+            -webkit-border-top-left-radius: 3px;
+            border-top-left-radius: 3px;
+            -webkit-border-bottom-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            justify-content: center;
+            -webkit-align-items: center;
+            align-items: center;
+            background-color: #fff;
+            height: 36px;
+            margin-left: -10px;
+            margin-right: 12px;
+            min-width: 36px;
+            width: 36px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf .nsm7Bb-HzV7m-LgbsSe-Bz112c,
+        .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf .nsm7Bb-HzV7m-LgbsSe-Bz112c {
+            margin: 0;
+            padding: 0
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+            height: 28px;
+            margin-left: -8px;
+            margin-right: 10px;
+            min-width: 28px;
+            width: 28px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+            height: 16px;
+            margin-left: -6px;
+            margin-right: 8px;
+            min-width: 16px;
+            width: 16px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.Bz112c-LgbsSe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+            -webkit-border-radius: 3px;
+            border-radius: 3px;
+            margin-left: 2px;
+            margin-right: 0;
+            padding: 0
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+            -webkit-border-radius: 18px;
+            border-radius: 18px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.pSzOP-SxQuSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+            -webkit-border-radius: 14px;
+            border-radius: 14px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+            -webkit-border-radius: 8px;
+            border-radius: 8px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-bN97Pc-sM5MNb {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-flex-direction: row;
+            flex-direction: row;
+            justify-content: space-between;
+            -webkit-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+            height: 100%;
+            position: relative;
+            width: 100%
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe .oXtfBe-l4eHX {
+            justify-content: center
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            font-family: "Google Sans", arial, sans-serif;
+            font-weight: 500;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            vertical-align: top
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.purZT-SxQuSe .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+            font-weight: 300
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe .oXtfBe-l4eHX .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+            -webkit-flex-grow: 0;
+            flex-grow: 0
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+            -webkit-transition: background-color .218s;
+            transition: background-color .218s;
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe:hover,
+        .nsm7Bb-HzV7m-LgbsSe:focus {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-color: rgb(210, 227, 252);
+            outline: none
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe,
+        .nsm7Bb-HzV7m-LgbsSe:focus .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+            background: rgba(66, 133, 244, .04)
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe:active .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+            background: rgba(66, 133, 244, .1)
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:hover .nsm7Bb-HzV7m-LgbsSe-MJoBVe,
+        .nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:focus .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+            background: rgba(255, 255, 255, .24)
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.MFS4be-Ia7Qfc:active .nsm7Bb-HzV7m-LgbsSe-MJoBVe {
+            background: rgba(255, 255, 255, .32)
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe .n1UuX-DkfjY {
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            height: 20px;
+            margin-left: -4px;
+            margin-right: 8px;
+            min-width: 20px;
+            width: 20px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId {
+            font-family: "Roboto";
+            font-size: 12px;
+            text-align: left
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .ssJRIf,
+        .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff .fmcmS {
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-items: center;
+            align-items: center;
+            color: #5f6368;
+            fill: #5f6368;
+            font-size: 11px;
+            font-weight: 400
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.jVeSEe.MFS4be-Ia7Qfc .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff {
+            color: #e8eaed;
+            fill: #e8eaed
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-BPrWId .K4efff .Bz112c {
+            height: 18px;
+            margin: -3px -3px -3px 2px;
+            min-width: 18px;
+            width: 18px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.jVeSEe .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+            -webkit-border-top-left-radius: 0;
+            border-top-left-radius: 0;
+            -webkit-border-bottom-left-radius: 0;
+            border-bottom-left-radius: 0;
+            -webkit-border-top-right-radius: 3px;
+            border-top-right-radius: 3px;
+            -webkit-border-bottom-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+            margin-left: 12px;
+            margin-right: -10px
+        }
+
+        .nsm7Bb-HzV7m-LgbsSe.jVeSEe.JGcpL-RbRzK .nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf {
+            -webkit-border-radius: 18px;
+            border-radius: 18px
+        }
+
+        .L5Fo6c-sM5MNb {
+            border: 0;
+            display: block;
+            left: 0;
+            position: relative;
+            top: 0
+        }
+
+        .L5Fo6c-bF1uUb {
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0
+        }
+
+        .L5Fo6c-bF1uUb:focus {
+            border: none;
+            outline: none
+        }
+
+        sentinel {}
+    </style>
+</head>
+
+<body data-status="ended">
+
+    <nav class="navbar navbar-expand-lg fixed-top bg-body-tertiary" data-bs-theme="dark" id="navbar">
+        <div class="container-fluid">
+            <span class="navbar-brand" href=".">
+                <span id="countdown">Ended at Sun, 26 Jan, 2025, 11:59 pm IST</span>
+                <button id="score" type="button" class="btn btn-dark btn-sm mb-1 ms-2" disabled="">Score: 0</button>
+                <button type="button" class="btn btn-outline-light btn-sm mb-1 ms-2 check-action"
+                    title="Check your score" disabled="">Check all</button>
+                <button type="button" class="btn btn-outline-light btn-sm mb-1 ms-2 save-action"
+                    title="Save your progress" disabled="">Save</button>
+            </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="nav-item dropdown ms-auto" role="group" aria-label="Toggle dark mode"
+                    title="Toggle Dark Mode">
+                    <button class="dark-theme-toggle btn btn-outline-light dropdown-toggle" type="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" aria-label="Toggle theme (dark)">
+                        <i class="bi bi-circle-half"></i> <span class="d-lg-none ms-2">Toggle theme</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button class="dropdown-item" data-bs-theme-value="light" aria-pressed="false"><i
+                                    class="me-2 bi bi-sun-fill"></i> Light</button></li>
+                        <li><button class="dropdown-item active" data-bs-theme-value="dark" aria-pressed="true"><i
+                                    class="me-2 bi bi-moon-stars-fill"></i> Dark</button></li>
+                        <li><button class="dropdown-item" data-bs-theme-value="auto" aria-pressed="false"><i
+                                    class="me-2 bi bi-circle-half"></i> Auto</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="instructions">
+            <h1 class="display-3 my-5">
+                TDS 2025 Jan GA1 - Development Tools
+            </h1>
+
+            <h2 class="display-6 my-5">Instructions</h2>
+            <ol>
+                <li><strong>Learn what you need</strong>. Reading material is provided, but feel free to skip it if you
+                    can answer the question. (Or learn it, just for pleasure.)</li>
+                <li><strong>Check answers regularly</strong> by pressing <kbd>Check</kbd>. It shows which answers are
+                    right or wrong. You can check multiple times.</li>
+                <li><strong>Save regularly</strong> by pressing <kbd>Save</kbd>. You can save multiple times. Your last
+                    saved submission will be evaluated.</li>
+                <li><strong>Reloading is OK</strong>. Your answers are saved in your browser (not server). Questions
+                    won't change except for randomized parameters.</li>
+                <li><strong>Browser may struggle</strong>. If you face loading issues, turn off security restrictions or
+                    try a different browser.</li>
+                <li><strong>Use anything</strong>. You can use any resources you want. The Internet, ChatGPT, friends,
+                    whatever. Use any libraries or frameworks you want.</li>
+                <li><strong>It's hackable</strong>. It's possible to get the answer to <em>some</em> questions by
+                    hacking the code for this quiz. That's allowed.</li>
+            </ol>
+            <p>Should you take TDS this term?</p>
+            <ul>
+                <li>If this assignment takes you under 2 hours to complete, you will likely do OK in TDS.</li>
+                <li>If you score above 8 / 10, you might get an S or A grade, with effort and luck.</li>
+            </ul>
+            <div class="alert alert-info d-flex align-items-center p-4 border-start border-info border-2 mt-5">
+                <i class="bi bi-chat-square-text-fill fs-4 me-3"></i>
+                <div>
+                    <strong>Have questions?</strong>
+                    <a href="https://discourse.onlinedegree.iitm.ac.in/t/ga1-development-tools-discussion-thread-tds-jan-2025/161083"
+                        target="_blank" class="alert-link ms-2"> Join the discussion on Discourse</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="login" class="my-5"><!---->
+            <div id="logged-in-email" class="mb-3">You are logged in as
+                <strong><!--?lit$236787353$-->22f2001640@ds.study.iitm.ac.in</strong>.
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-sm btn-outline-danger">
+                    Logout
+                </button>
+            </div>
+        </section>
+
+        <section id="notification" class="my-5">
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Recent saves <small class="text-muted fs-6 fw-light">(most recent is your
+                        official score)</small></h4>
+                <div class="d-flex align-items-center mt-2">
+                    <button class="btn btn-sm btn-outline-primary me-2 load-answers" data-bs-toggle="collapse"
+                        data-index="0">Reload</button>
+                    from 1/10/2025, 12:45:36 AM. Score: 10
+                </div>
+                <div class="d-flex align-items-center mt-2">
+                    <button class="btn btn-sm btn-outline-primary me-2 load-answers" data-bs-toggle="collapse"
+                        data-index="1">Reload</button>
+                    from 1/10/2025, 12:45:36 AM. Score: 10
+                </div>
+                <div class="d-flex align-items-center mt-2">
+                    <button class="btn btn-sm btn-outline-primary me-2 load-answers" data-bs-toggle="collapse"
+                        data-index="2">Reload</button>
+                    from 1/10/2025, 12:45:36 AM. Score: 10
+                </div>
+            </div>
+        </section>
+
+        <section class="alert alert-info my-5 d-flex align-items-center d-none" id="loading-questions">
+            <div class="spinner-border text-primary me-2" role="status"></div>
+            <span>Loading questions...</span>
+        </section>
+
+        <form id="exam-form" class="needs-validation" novalidate="">
+            <section id="questions" class="my-5"><!----><!---->
+                <h1 class="display-6">Questions</h1><!----><!---->
+                <ol class="mt-3">
+                    <!--?lit$236787353$--><!---->
+                    <li><a href="#hq-vs-code-version"><!--?lit$236787353$-->VS Code Version</a>
+                        (<!--?lit$236787353$-->0.25 <!--?lit$236787353$-->marks)</li><!----><!---->
+                    <li><a href="#hq-uv-http-get"><!--?lit$236787353$-->Make HTTP requests with uv</a>
+                        (<!--?lit$236787353$-->1 <!--?lit$236787353$-->mark)</li><!----><!---->
+                    <li><a href="#hq-npx-prettier"><!--?lit$236787353$-->Run command with npx</a>
+                        (<!--?lit$236787353$-->0.5 <!--?lit$236787353$-->marks)</li><!----><!---->
+                    <li><a href="#hq-use-google-sheets"><!--?lit$236787353$-->Use Google Sheets</a>
+                        (<!--?lit$236787353$-->0.25 <!--?lit$236787353$-->marks)</li><!----><!---->
+                    <li><a href="#hq-use-excel"><!--?lit$236787353$-->Use Excel</a> (<!--?lit$236787353$-->0.25
+                        <!--?lit$236787353$-->marks)
+                    </li><!----><!---->
+                    <li><a href="#hq-use-devtools"><!--?lit$236787353$-->Use DevTools</a> (<!--?lit$236787353$-->0.5
+                        <!--?lit$236787353$-->marks)
+                    </li><!----><!---->
+                    <li><a href="#hq-count-wednesdays"><!--?lit$236787353$-->Count Wednesdays</a>
+                        (<!--?lit$236787353$-->0.5 <!--?lit$236787353$-->marks)</li><!----><!---->
+                    <li><a href="#hq-extract-csv-zip"><!--?lit$236787353$-->Extract CSV from a ZIP</a>
+                        (<!--?lit$236787353$-->0.25 <!--?lit$236787353$-->marks)</li><!----><!---->
+                    <li><a href="#hq-use-json"><!--?lit$236787353$-->Use JSON</a> (<!--?lit$236787353$-->0.75
+                        <!--?lit$236787353$-->marks)
+                    </li><!----><!---->
+                    <li><a href="#hq-multi-cursor-json"><!--?lit$236787353$-->Multi-cursor edits to convert to JSON</a>
+                        (<!--?lit$236787353$-->0.5 <!--?lit$236787353$-->marks)</li><!----><!---->
+                    <li><a href="#hq-css-selectors"><!--?lit$236787353$-->CSS selectors</a> (<!--?lit$236787353$-->0.5
+                        <!--?lit$236787353$-->marks)
+                    </li><!----><!---->
+                    <li><a href="#hq-unicode-data"><!--?lit$236787353$-->Process files with different encodings</a>
+                        (<!--?lit$236787353$-->1 <!--?lit$236787353$-->mark)</li><!----><!---->
+                    <li><a href="#hq-use-github"><!--?lit$236787353$-->Use GitHub</a> (<!--?lit$236787353$-->0.5
+                        <!--?lit$236787353$-->marks)
+                    </li><!----><!---->
+                    <li><a href="#hq-replace-across-files"><!--?lit$236787353$-->Replace across files</a>
+                        (<!--?lit$236787353$-->0.75 <!--?lit$236787353$-->marks)</li><!----><!---->
+                    <li><a href="#hq-list-files-attributes"><!--?lit$236787353$-->List files and attributes</a>
+                        (<!--?lit$236787353$-->0.75 <!--?lit$236787353$-->marks)</li><!----><!---->
+                    <li><a href="#hq-move-rename-files"><!--?lit$236787353$-->Move and rename files</a>
+                        (<!--?lit$236787353$-->0.5 <!--?lit$236787353$-->marks)</li><!----><!---->
+                    <li><a href="#hq-compare-files"><!--?lit$236787353$-->Compare files</a> (<!--?lit$236787353$-->0.5
+                        <!--?lit$236787353$-->marks)
+                    </li><!----><!---->
+                    <li><a href="#hq-sql-ticket-sales"><!--?lit$236787353$-->SQL: Ticket Sales</a>
+                        (<!--?lit$236787353$-->0.75 <!--?lit$236787353$-->marks)</li><!---->
+                </ol><!----><!---->
+                <div class="card my-5" data-question="q-vs-code-version" id="hq-vs-code-version">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->1</span>
+                        <!--?lit$236787353$-->VS Code Version (<!--?lit$236787353$-->0.25 <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>Editor: VS Code</h2>
+                        <p>Your editor is the most important tool in your arsenal. That's where you'll spend most of
+                            your time. Make sure you're comfortable with it.</p>
+                        <p><a href="https://code.visualstudio.com/" target="_blank"
+                                rel="noopener noreferrer"><strong>Visual Studio Code</strong></a> is, <em>by far</em>,
+                            the most popular code editor today. According to the <a
+                                href="https://survey.stackoverflow.co/2024/technology/#1-integrated-development-environment"
+                                target="_blank" rel="noopener noreferrer">2024 StackOverflow Survey</a> almost 75% of
+                            developers use it. We recommend you learn it well. Even if you use another editor, you'll be
+                            working with others who use it, and it's a good idea to have some exposure.</p>
+                        <p>Watch these introductory videos (35 min) from the <a
+                                href="https://code.visualstudio.com/docs" target="_blank"
+                                rel="noopener noreferrer">Visual Studio Docs</a> to get started:</p>
+                        <ul>
+                            <li><a href="https://code.visualstudio.com/docs/introvideos/basics" target="_blank"
+                                    rel="noopener noreferrer">Getting Started</a>: Set up and learn the basics of Visual
+                                Studio Code. (7 min)</li>
+                            <li><a href="https://code.visualstudio.com/docs/introvideos/codeediting" target="_blank"
+                                    rel="noopener noreferrer">Code Editing</a>: Learn how to edit and run code in VS
+                                Code. (3 min)</li>
+                            <li><a href="https://code.visualstudio.com/docs/introvideos/productivity" target="_blank"
+                                    rel="noopener noreferrer">Productivity Tips</a>: Become a VS Code power user with
+                                these productivity tips. (4 min)</li>
+                            <li><a href="https://code.visualstudio.com/docs/introvideos/configure" target="_blank"
+                                    rel="noopener noreferrer">Personalize</a>: Personalize VS Code to make it yours with
+                                themes. (2 min)</li>
+                            <li><a href="https://code.visualstudio.com/docs/introvideos/extend" target="_blank"
+                                    rel="noopener noreferrer">Extensions</a>: Add features, themes, and more to VS Code
+                                with extensions! (4 min)</li>
+                            <li><a href="https://code.visualstudio.com/docs/introvideos/debugging" target="_blank"
+                                    rel="noopener noreferrer">Debugging</a>: Get started with debugging in VS Code. (6
+                                min)</li>
+                            <li><a href="https://code.visualstudio.com/docs/introvideos/versioncontrol" target="_blank"
+                                    rel="noopener noreferrer">Version Control</a>: Learn how to use Git version control
+                                in VS Code. (3 min)</li>
+                            <li><a href="https://code.visualstudio.com/docs/introvideos/customize" target="_blank"
+                                    rel="noopener noreferrer">Customize</a>: Learn how to customize your settings and
+                                keyboard shortcuts in VS Code. (6 min)</li>
+                        </ul>
+                        <h2>AI Editors: Copilot, Cursor</h2>
+                        <p>Note: AI Editors like <a href="https://www.cursor.com/" target="_blank"
+                                rel="noopener noreferrer">Cursor</a>, <a href="https://sourcegraph.com/cody"
+                                target="_blank" rel="noopener noreferrer">Cody</a>, and <a
+                                href="https://github.com/features/copilot" target="_blank"
+                                rel="noopener noreferrer">GitHub Copilot</a> use LLMs to help you write code faster.</p>
+                        <p>These are built on top of VS Code. These are now a standard tool in every developer's
+                            toolkit. Please use them.</p>
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Install and run Visual Studio Code. In your Terminal (or Command Prompt), type
+                                <code>code -s</code> and press
+                                Enter. Copy and paste the <em>entire output</em> below.
+                            </p>
+
+                            <label class="form-label" for="q-vs-code-version">What is the output of
+                                <code>code -s</code>?</label>
+                            <textarea class="form-control" rows="3" id="q-vs-code-version" name="q-vs-code-version"
+                                disabled=""></textarea>
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-vs-code-version"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-uv-http-get" id="hq-uv-http-get">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->2</span>
+                        <!--?lit$236787353$-->Make HTTP requests with uv (<!--?lit$236787353$-->1
+                        <!--?lit$236787353$-->mark)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>Python tools: uv</h2>
+                        <p><a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank"
+                                rel="noopener noreferrer">Install uv</a>.</p>
+                        <p><a href="https://docs.astral.sh/uv/" target="_blank"
+                                rel="noopener noreferrer"><code>uv</code></a> is a fast Python package and project
+                            manager that's becoming the standard for running Python scripts. It replaces tools like pip,
+                            conda, pipx, poetry, pyenv, twine, and virtualenv into one, enabling:</p>
+                        <ul>
+                            <li><strong>Python Version Management</strong>: uv installs and manages <em>multiple</em>
+                                Python versions, allowing developers to specify and switch between versions seamlessly.
+                            </li>
+                            <li><strong>Virtual Environment Handling</strong>: It automates the creation and management
+                                of virtual environments, ensuring isolated and consistent development spaces for
+                                different projects.</li>
+                            <li><strong>Dependency Management</strong>: With support for the pyproject.toml format, uv
+                                enables precise specification of project dependencies. It maintains a universal
+                                lockfile, uv.lock, to ensure reproducible installations across different systems.</li>
+                            <li><strong>Project Execution</strong>: The <code>uv run</code> command allows for the
+                                execution of scripts and applications within the managed environment, streamlining
+                                development workflows.</li>
+                        </ul>
+                        <p>Here are some commonly used commands:</p>
+                        <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-comment"># Replace python with uv. This automatically installs Python and dependencies.</span>
+uv run script.py
+
+<span class="hljs-comment"># Run a Python script directly from the Internet</span>
+uv run https://example.com/script.py
+
+<span class="hljs-comment"># Run a Python script without installing</span>
+uvx ruff
+
+<span class="hljs-comment"># Use a specific Python version</span>
+uv run --python 3.11 script.py
+
+<span class="hljs-comment"># Add dependencies to your script</span>
+uv add httpx --script script.py
+
+<span class="hljs-comment"># Create a virtual environment at .venv</span>
+uv venv
+
+<span class="hljs-comment"># Install packages to your virtual environment</span>
+uv pip install httpx
+</code></pre>
+                        <p>uv uses <a
+                                href="https://packaging.python.org/en/latest/specifications/inline-script-metadata/#inline-script-metadata"
+                                target="_blank" rel="noopener noreferrer">inline script metadata</a> for dependencies.
+                            The eliminates the need for <code>requirements.txt</code> or virtual environments. For
+                            example:</p>
+                        <pre><code class="language-python hljs" data-highlighted="yes"><span class="hljs-comment"># /// script</span>
+<span class="hljs-comment"># requires-python = "&gt;=3.11"</span>
+<span class="hljs-comment"># dependencies = [</span>
+<span class="hljs-comment">#   "httpx",</span>
+<span class="hljs-comment">#   "pandas",</span>
+<span class="hljs-comment"># ]</span>
+<span class="hljs-comment"># ///</span>
+</code></pre>
+                        <p><a href="https://youtu.be/igWlYl3asKw?t=1240" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/igWlYl3asKw/sddefault.webp"
+                                    alt="uv - Python package and project management | Inline Script Metadata (28 min)"
+                                    class="img-fluid"></a></p>
+                        <!-- Assessment: Share output of `uv run --with httpie -- https https://httpbin.org/get?email={email}` -->
+                        <!-- Assessment: Share output of `uvx markitdown {email}.pdf` -->
+                        <!-- Assessment: Share output of `uv ruff format script.py` -->
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Running <code>uv run --with httpie -- https [URL]</code> installs the Python package
+                                <code>httpie</code> and
+                                sends a HTTPS request to the URL.
+                            </p>
+
+                            <p>
+                                Send a HTTPS request to
+                                <code>https://httpbin.org/get</code> with the URL encoded parameter <code>email</code>
+                                set to
+                                <code><!--?lit$236787353$-->22f2001640@ds.study.iitm.ac.in</code>
+                            </p>
+                            <label class="form-label" for="q-uv-http-get">What is the JSON output of the command? (Paste
+                                only the JSON body, not the headers)</label>
+                            <input class="form-control" id="q-uv-http-get" name="q-uv-http-get" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-uv-http-get"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-npx-prettier" id="hq-npx-prettier">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->3</span>
+                        <!--?lit$236787353$-->Run command with npx (<!--?lit$236787353$-->0.5
+                        <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>JavaScript tools: npx</h2>
+                        <p><a href="https://docs.npmjs.com/cli/v8/commands/npx" target="_blank"
+                                rel="noopener noreferrer">npx</a> is a command-line tool that comes with npm (Node
+                            Package Manager) and allows you to execute npm package binaries and run one-off commands
+                            without installing them globally. It's essential for modern JavaScript development and data
+                            science workflows.</p>
+                        <p>For data scientists, npx is useful when:</p>
+                        <ul>
+                            <li>Running JavaScript-based data visualization tools</li>
+                            <li>Converting notebooks and documents</li>
+                            <li>Testing and formatting code</li>
+                            <li>Running development servers</li>
+                        </ul>
+                        <p>Here are common npx commands:</p>
+                        <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-comment"># Run a package without installing</span>
+npx http-server .                <span class="hljs-comment"># Start a local web server</span>
+npx prettier --write .           <span class="hljs-comment"># Format code or docs</span>
+npx eslint .                     <span class="hljs-comment"># Lint JavaScript</span>
+npx typescript-node script.ts    <span class="hljs-comment"># Run TypeScript directly</span>
+npx esbuild app.js               <span class="hljs-comment"># Bundle JavaScript</span>
+npx jsdoc .                      <span class="hljs-comment"># Generate JavaScript docs</span>
+
+<span class="hljs-comment"># Run specific versions</span>
+npx prettier@3.2 --write .        <span class="hljs-comment"># Use prettier 3.2</span>
+
+<span class="hljs-comment"># Execute remote scripts (use with caution!)</span>
+npx github:user/repo            <span class="hljs-comment"># Run from GitHub</span>
+</code></pre>
+                        <p>Watch this introduction to npx (6 min):</p>
+                        <p><a href="https://youtu.be/55WaAoZV_tQ" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/55WaAoZV_tQ/sddefault.webp"
+                                    alt="What you can do with npx (6 min)" class="img-fluid"></a></p>
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>Let's make sure you know how to use <code>npx</code> and <code>prettier</code>.</p>
+                            <p>
+                                Download
+                                <button class="btn btn-sm btn-outline-primary" type="button">
+                                    README.md</button>. In the directory where you downloaded it, make sure it is called
+                                <code>README.md</code>, and run
+                                <code>npx -y prettier@3.4.2 README.md | sha256sum</code>.
+                            </p>
+
+                            <label class="form-label" for="q-npx-prettier">What is the output of the command?</label>
+                            <input class="form-control" id="q-npx-prettier" name="q-npx-prettier" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-npx-prettier"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-use-google-sheets" id="hq-use-google-sheets">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->4</span>
+                        <!--?lit$236787353$-->Use Google Sheets (<!--?lit$236787353$-->0.25 <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>Spreadsheet: Excel, Google Sheets</h2>
+                        <p>You'll use spreadsheets for data cleaning and exploration. The most popular spreadsheet
+                            program is <a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank"
+                                rel="noopener noreferrer">Microsoft Excel</a> followed by <a
+                                href="https://www.google.com/sheets/about/" target="_blank"
+                                rel="noopener noreferrer">Google Sheets</a>.</p>
+                        <p>You may be already familiar with these. If not, make sure to learn the basics of both.</p>
+                        <p>Go through the <a
+                                href="https://support.microsoft.com/en-us/office/excel-video-training-9bc05390-e94c-46af-a5b3-d7c22f6990bb"
+                                target="_blank" rel="noopener noreferrer"><strong>Microsoft Excel</strong> video
+                                training</a> and make sure you cover:</p>
+                        <ul>
+                            <li><a href="https://support.microsoft.com/en-us/office/create-a-new-workbook-ae99f19b-cecb-4aa0-92c8-7126d6212a83"
+                                    target="_blank" rel="noopener noreferrer">Intro to Excel</a></li>
+                            <li><a href="https://support.microsoft.com/en-us/office/insert-or-delete-rows-and-columns-6f40e6e4-85af-45e0-b39d-65dd504a3246"
+                                    target="_blank" rel="noopener noreferrer">Rows &amp; columns</a></li>
+                            <li><a href="https://support.microsoft.com/en-us/office/move-or-copy-cells-and-cell-contents-803d65eb-6a3e-4534-8c6f-ff12d1c4139e"
+                                    target="_blank" rel="noopener noreferrer">Cells</a></li>
+                            <li><a href="https://support.microsoft.com/en-us/office/available-number-formats-in-excel-0afe8f52-97db-41f1-b972-4b46e9f1e8d2"
+                                    target="_blank" rel="noopener noreferrer">Formatting</a></li>
+                            <li><a href="https://support.microsoft.com/en-us/office/overview-of-formulas-in-excel-ecfdc708-9162-49e8-b993-c311f47ca173"
+                                    target="_blank" rel="noopener noreferrer">Formulas &amp; Functions</a></li>
+                            <li><a href="https://support.microsoft.com/en-us/office/create-and-format-tables-e81aa349-b006-4f8a-9806-5af9df0ac664"
+                                    target="_blank" rel="noopener noreferrer">Tables</a></li>
+                            <li><a href="https://support.microsoft.com/en-us/office/create-a-pivottable-to-analyze-worksheet-data-a9a84538-bfe9-40a9-a8e9-f99134456576"
+                                    target="_blank" rel="noopener noreferrer">PivotTables</a></li>
+                        </ul>
+                        <p>Watch this video for an introduction to <strong>Google Sheets</strong> (49 min):</p>
+                        <p><a href="https://youtu.be/TENAbUa-R-w" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/TENAbUa-R-w/sddefault.webp"
+                                    alt="Google Sheets Tutorial for Beginners (49 min)" class="img-fluid"></a></p>
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Let's make sure you can write formulas in Google Sheets. Type this formula into Google
+                                Sheets. (It won't work in
+                                Excel)
+                            </p>
+                            <pre><code class="language-excel hljs" data-highlighted="yes">=<span class="hljs-built_in">SUM</span>(ARRAY_CONSTRAIN(<span class="hljs-built_in">SEQUENCE</span>(<span class="hljs-number">100</span>, <span class="hljs-number">100</span>, <span class="hljs-number">6</span>, <span class="hljs-number">10</span>), <span class="hljs-number">1</span>, <span class="hljs-number">10</span>))</code></pre>
+
+                            <label class="form-label" for="q-use-google-sheets">What is the result?</label>
+                            <input class="form-control" id="q-use-google-sheets" name="q-use-google-sheets" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-use-google-sheets"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-use-excel" id="hq-use-excel">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->5</span>
+                        <!--?lit$236787353$-->Use Excel (<!--?lit$236787353$-->0.25 <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$-->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>Let's make sure you can write formulas in Excel. Type this formula into Excel.</p>
+                            <p>Note: <strong>This will ONLY work in Office 365.</strong></p>
+
+                            <pre><code class="language-excel hljs" data-highlighted="yes">=<span class="hljs-built_in">SUM</span>(<span class="hljs-built_in">TAKE</span>(<span class="hljs-built_in">SORTBY</span>({<span class="hljs-number">11</span>,<span class="hljs-number">14</span>,<span class="hljs-number">12</span>,<span class="hljs-number">9</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">13</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>,<span class="hljs-number">12</span>,<span class="hljs-number">10</span>,<span class="hljs-number">12</span>,<span class="hljs-number">0</span>,<span class="hljs-number">11</span>}, {<span class="hljs-number">10</span>,<span class="hljs-number">9</span>,<span class="hljs-number">13</span>,<span class="hljs-number">2</span>,<span class="hljs-number">11</span>,<span class="hljs-number">8</span>,<span class="hljs-number">16</span>,<span class="hljs-number">14</span>,<span class="hljs-number">7</span>,<span class="hljs-number">15</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">6</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">12</span>}), <span class="hljs-number">1</span>, <span class="hljs-number">10</span>))</code></pre>
+
+                            <label class="form-label" for="q-use-excel">What is the result?</label>
+                            <input class="form-control" id="q-use-excel" name="q-use-excel" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                            <p class="text-muted">
+                                Note: If you get <code>#NAME?</code> you have the wrong version of Excel. Find a friend
+                                for whom this works.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-use-excel"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-use-devtools" id="hq-use-devtools">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->6</span>
+                        <!--?lit$236787353$-->Use DevTools (<!--?lit$236787353$-->0.5 <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>Browser: DevTools</h2>
+                        <p><a href="https://developer.chrome.com/docs/devtools/overview/" target="_blank"
+                                rel="noopener noreferrer">Chrome DevTools</a> is the de facto standard for web
+                            development and data analysis in the browser.
+                            You'll use this a lot when debugging and inspecting web pages.</p>
+                        <p>Here are the key features you'll use most:</p>
+                        <ol>
+                            <li>
+                                <p><strong>Elements Panel</strong></p>
+                                <ul>
+                                    <li>Inspect and modify HTML/CSS in real-time</li>
+                                    <li>Copy CSS selectors for web scraping</li>
+                                    <li>Debug layout issues with the Box Model</li>
+                                </ul>
+                                <pre><code class="language-javascript hljs" data-highlighted="yes"><span class="hljs-comment">// Copy selector in Console</span>
+<span class="hljs-title function_">copy</span>($0); <span class="hljs-comment">// Copies selector of selected element</span>
+</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Console Panel</strong></p>
+                                <ul>
+                                    <li>JavaScript REPL environment</li>
+                                    <li>Log and debug data</li>
+                                    <li>Common console methods:</li>
+                                </ul>
+                                <pre><code class="language-javascript hljs" data-highlighted="yes"><span class="hljs-variable language_">console</span>.<span class="hljs-title function_">table</span>(data); <span class="hljs-comment">// Display data in table format</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">group</span>(<span class="hljs-string">"Name"</span>); <span class="hljs-comment">// Group related logs</span>
+<span class="hljs-variable language_">console</span>.<span class="hljs-title function_">time</span>(<span class="hljs-string">"Label"</span>); <span class="hljs-comment">// Measure execution time</span>
+</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Network Panel</strong></p>
+                                <ul>
+                                    <li>Monitor API requests and responses</li>
+                                    <li>Simulate slow connections</li>
+                                    <li>Right-click on a request and select "Copy as fetch" to get the request.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p><strong>Essential Keyboard Shortcuts</strong></p>
+                                <ul>
+                                    <li><code>Ctrl+Shift+I</code> (Windows) / <code>Cmd+Opt+I</code> (Mac): Open
+                                        DevTools</li>
+                                    <li><code>Ctrl+Shift+C</code>: Select element to inspect</li>
+                                    <li><code>Ctrl+L</code>: Clear console</li>
+                                    <li><code>$0</code>: Reference currently selected element</li>
+                                    <li><code>$$('selector')</code>: Query selector all (returns array)</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p>Videos from Chrome Developers (37 min total):</p>
+                        <ul>
+                            <li><a href="https://youtu.be/t1c5tNPpXjs" target="_blank" rel="noopener noreferrer">Fun
+                                    &amp; powerful: Intro to Chrome DevTools</a> (5 min)</li>
+                            <li><a href="https://youtu.be/X65TAP8a530" target="_blank"
+                                    rel="noopener noreferrer">Different ways to open Chrome DevTools</a> (5 min)</li>
+                            <li><a href="https://youtu.be/xHusjrb_34A" target="_blank" rel="noopener noreferrer">Faster
+                                    DevTools navigation with shortcuts and settings</a> (3 min)</li>
+                            <li><a href="https://youtu.be/76U0gtuV9AY" target="_blank" rel="noopener noreferrer">How to
+                                    log messages in the Console</a> (6 min)</li>
+                            <li><a href="https://youtu.be/hdRDTj6ObiE" target="_blank" rel="noopener noreferrer">How to
+                                    speed up your workflow with Console shortcuts</a> (6 min)</li>
+                            <li><a href="https://youtu.be/J-02VNxE7lE" target="_blank" rel="noopener noreferrer">HTML vs
+                                    DOM? Let’s debug them</a> (5 min)</li>
+                            <li><a href="https://youtu.be/mSMb-aH6sUw" target="_blank" rel="noopener noreferrer">Caching
+                                    demystified: Inspect, clear, and disable caches</a> (7 min)</li>
+                            <li><a href="https://youtu.be/76U0gtuV9AY" target="_blank" rel="noopener noreferrer">Console
+                                    message logging</a> (6 min)</li>
+                            <li><a href="https://youtu.be/hdRDTj6ObiE" target="_blank" rel="noopener noreferrer">Console
+                                    workflow shortcuts</a> (6 min)</li>
+                            <li><a href="https://youtu.be/J-02VNxE7lE" target="_blank" rel="noopener noreferrer">HTML vs
+                                    DOM debugging</a> (5 min)</li>
+                            <li><a href="https://youtu.be/mSMb-aH6sUw" target="_blank" rel="noopener noreferrer">Cache
+                                    inspection and management</a> (7 min)</li>
+                        </ul>
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <input type="hidden" value="hnehz95lpn" disabled="">
+                            <p>Just above this paragraph, there's a hidden input with a secret value.</p>
+
+                            <label class="form-label" for="q-use-devtools">What is the value in the hidden
+                                input?</label>
+                            <input class="form-control" id="q-use-devtools" name="q-use-devtools" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-use-devtools"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-count-wednesdays" id="hq-count-wednesdays">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->7</span>
+                        <!--?lit$236787353$-->Count Wednesdays (<!--?lit$236787353$-->0.5 <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$-->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <label class="form-label" for="q-count-wednesdays">How many Wednesdays are there in the date
+                                range <!--?lit$236787353$-->1980-01-25 to
+                                <!--?lit$236787353$-->2012-07-28?</label>
+                            <input class="form-control" id="q-count-wednesdays" name="q-count-wednesdays" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                            <p class="text-muted">
+                                The dates are in the year-month-day format. Include both the start and end date in your
+                                count. You can do this
+                                using any tool (e.g. Excel, Python, JavaScript, manually).
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-count-wednesdays"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-extract-csv-zip" id="hq-extract-csv-zip">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->8</span>
+                        <!--?lit$236787353$-->Extract CSV from a ZIP (<!--?lit$236787353$-->0.25
+                        <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$-->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Download and unzip file
+                                <button class="btn btn-sm btn-outline-primary" type="button">
+                                    <!--?lit$236787353$-->q-extract-csv-zip.zip
+                                </button>
+                                which has a single <code>extract.csv</code> file inside.
+                            </p>
+
+                            <label class="form-label" for="q-extract-csv-zip">What is the value in the "answer" column
+                                of the CSV file?</label>
+                            <input class="form-control" id="q-extract-csv-zip" name="q-extract-csv-zip" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-extract-csv-zip"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-use-json" id="hq-use-json">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->9</span>
+                        <!--?lit$236787353$-->Use JSON (<!--?lit$236787353$-->0.75 <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>JSON</h2>
+                        <p>JSON (JavaScript Object Notation) is the de facto standard format for data exchange on the
+                            web and APIs. Its human-readable format and widespread support make it essential for data
+                            scientists working with web services, APIs, and configuration files.</p>
+                        <p>For data scientists, JSON is essential when:</p>
+                        <ul>
+                            <li>Working with REST APIs and web services</li>
+                            <li>Storing configuration files and metadata</li>
+                            <li>Parsing semi-structured data from databases like MongoDB</li>
+                            <li>Creating data visualization specifications (e.g., Vega-Lite)</li>
+                        </ul>
+                        <p>Watch this comprehensive introduction to JSON (15 min):</p>
+                        <p><a href="https://youtu.be/GpOO5iKzOmY" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/GpOO5iKzOmY/sddefault.webp" alt="JSON Crash Course"
+                                    class="img-fluid"></a></p>
+                        <p>Key concepts to understand in JSON:</p>
+                        <ul>
+                            <li>JSON only supports 6 data types: strings, numbers, booleans, null, arrays, and objects
+                            </li>
+                            <li>You can nest data. Arrays and objects can contain other data types, including other
+                                arrays and objects</li>
+                            <li>Always validate. Ensure JSON is well-formed. Comm errors: Trailing commas, missing
+                                quotes, and escape characters</li>
+                        </ul>
+                        <p><a href="https://jsonlines.org/" target="_blank" rel="noopener noreferrer">JSON Lines</a> is
+                            a format that allows you to store multiple JSON objects in a single line.
+                            It's useful for logging and streaming data.</p>
+                        <p>Tools you could use with JSON:</p>
+                        <ul>
+                            <li><a href="https://jsonlint.com/" target="_blank" rel="noopener noreferrer">JSONLint</a>:
+                                Validate and format JSON</li>
+                            <li><a href="https://jsoneditoronline.org/" target="_blank" rel="noopener noreferrer">JSON
+                                    Editor Online</a>: Visual JSON editor and formatter</li>
+                            <li><a href="https://json-schema.org/" target="_blank" rel="noopener noreferrer">JSON
+                                    Schema</a>: Define the structure of your JSON data</li>
+                            <li><a href="https://stedolan.github.io/jq/" target="_blank"
+                                    rel="noopener noreferrer">jq</a>: Command-line JSON processor</li>
+                        </ul>
+                        <p>Common Python operations with JSON:</p>
+                        <pre><code class="language-python hljs" data-highlighted="yes"><span class="hljs-keyword">import</span> json
+
+<span class="hljs-comment"># Parse JSON string</span>
+json_str = <span class="hljs-string">'{"name": "Alice", "age": 30}'</span>
+data = json.loads(json_str)
+
+<span class="hljs-comment"># Convert to JSON string</span>
+json_str = json.dumps(data, indent=<span class="hljs-number">2</span>)
+
+<span class="hljs-comment"># Read JSON from file</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'data.json'</span>) <span class="hljs-keyword">as</span> f:
+    data = json.load(f)
+
+<span class="hljs-comment"># Write JSON to file</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'output.json'</span>, <span class="hljs-string">'w'</span>) <span class="hljs-keyword">as</span> f:
+    json.dump(data, f, indent=<span class="hljs-number">2</span>)
+
+<span class="hljs-comment"># Read JSON data a Pandas DataFrame. JSON data is typically stored as an array of objects.</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+df = pd.read_json(<span class="hljs-string">'data.json'</span>)
+
+<span class="hljs-comment"># Read JSON lines from file into a DataFrame. JSON lines are typically one line per object.</span>
+df = pd.read_json(<span class="hljs-string">'data.jsonl'</span>, lines=<span class="hljs-literal">True</span>)
+</code></pre>
+                        <p>Practice JSON skills with these resources:</p>
+                        <ul>
+                            <li><a href="https://json-generator.com/" target="_blank" rel="noopener noreferrer">JSON
+                                    Generator</a>: Create sample JSON data</li>
+                            <li><a href="https://jsonpathfinder.com/" target="_blank" rel="noopener noreferrer">JSON
+                                    Path Finder</a>: Learn to navigate complex JSON structures</li>
+                            <li><a href="https://www.jsonschemavalidator.net/" target="_blank"
+                                    rel="noopener noreferrer">JSON Schema Validator</a>: Validate JSON against schemas
+                            </li>
+                        </ul>
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Let's make sure you know how to use JSON. Sort this JSON array of objects by the value
+                                of the
+                                <code>age</code> field. In case of a tie, sort by the <code>name</code> field. Paste the
+                                resulting JSON below
+                                without any spaces or newlines.
+                            </p>
+
+                            <pre
+                                style="white-space: pre-wrap"><code class="language-json hljs" data-highlighted="yes"><span class="hljs-punctuation">[</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Alice"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">74</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Bob"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">87</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Charlie"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">92</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"David"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">50</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Emma"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">47</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Frank"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">29</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Grace"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">44</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Henry"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">38</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Ivy"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">91</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Jack"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">62</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Karen"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">4</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Liam"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">91</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Mary"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">42</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Nora"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">82</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Oscar"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">50</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span><span class="hljs-punctuation">{</span><span class="hljs-attr">"name"</span><span class="hljs-punctuation">:</span><span class="hljs-string">"Paul"</span><span class="hljs-punctuation">,</span><span class="hljs-attr">"age"</span><span class="hljs-punctuation">:</span><span class="hljs-number">62</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">]</span></code></pre>
+
+                            <label class="form-label" for="q-use-json">Sorted JSON:</label>
+                            <input class="form-control" id="q-use-json" name="q-use-json" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-use-json"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-multi-cursor-json" id="hq-multi-cursor-json">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->10</span>
+                        <!--?lit$236787353$-->Multi-cursor edits to convert to JSON (<!--?lit$236787353$-->0.5
+                        <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$-->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <p>
+                            Download
+                            <button class="btn btn-sm btn-outline-primary" type="button">
+                                <!--?lit$236787353$-->q-multi-cursor-json.txt
+                            </button>
+                            and use <a href="https://youtu.be/4lssq0zYxv0">multi-cursors</a> and convert it into a
+                            single JSON object, where
+                            <code>key=value</code> pairs are converted into <code>{key: value, key: value, ...}</code>.
+                        </p>
+                        <div class="mb-3">
+                            <label class="form-label" for="q-multi-cursor-json">What's the result when you paste the
+                                JSON at
+                                <a
+                                    href="https://tools-in-data-science.pages.dev/jsonhash">tools-in-data-science.pages.dev/jsonhash</a>
+                                and
+                                click the Hash button?</label>
+                            <input class="form-control" id="q-multi-cursor-json" name="q-multi-cursor-json" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-multi-cursor-json"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-css-selectors" id="hq-css-selectors">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->11</span>
+                        <!--?lit$236787353$-->CSS selectors (<!--?lit$236787353$-->0.5 <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>CSS Selectors</h2>
+                        <p>CSS selectors are patterns used to select and style HTML elements on a web page. They are
+                            fundamental to web development and data scraping, allowing you to precisely target elements
+                            for styling or extraction.</p>
+                        <p>For data scientists, understanding CSS selectors is crucial when:</p>
+                        <ul>
+                            <li>Web scraping with tools like Beautiful Soup or Scrapy</li>
+                            <li>Selecting elements for browser automation with Selenium</li>
+                            <li>Styling data visualizations and web applications</li>
+                            <li>Debugging website issues using browser DevTools</li>
+                        </ul>
+                        <p>Watch this comprehensive introduction to CSS selectors (20 min):</p>
+                        <p><a href="https://youtu.be/l1mER1bV0N0" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/l1mER1bV0N0/sddefault.webp"
+                                    alt="Learn Every CSS Selector In 20 Minutes (20 min)" class="img-fluid"></a></p>
+                        <p>The Mozilla Developer Network (MDN) provides detailed documentation on the three main types
+                            of selectors:</p>
+                        <ul>
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Basic_selectors"
+                                    target="_blank" rel="noopener noreferrer">Basic CSS selectors</a>: Learn about
+                                element (<code>div</code>), class (<code>.container</code>), ID (<code>#header</code>),
+                                and universal (<code>*</code>) selectors</li>
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Attribute_selectors"
+                                    target="_blank" rel="noopener noreferrer">Attribute selectors</a>: Target elements
+                                based on their attributes or attribute values (<code>[type="text"]</code>)</li>
+                            <li><a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Combinators"
+                                    target="_blank" rel="noopener noreferrer">Combinators</a>: Use relationships between
+                                elements (<code>div &gt; p</code>, <code>div + p</code>, <code>div ~ p</code>)</li>
+                        </ul>
+                        <p>Practice your CSS selector skills with this interactive tool:</p>
+                        <ul>
+                            <li><a href="https://flukeout.github.io/" target="_blank" rel="noopener noreferrer">CSS
+                                    Diner</a>: A fun game that teaches CSS selectors through increasingly challenging
+                                levels</li>
+                        </ul>
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Let's make sure you know how to select elements using CSS selectors. Find all
+                                <code>&lt;div&gt;</code>s having a <code>foo</code> class in the hidden element below.
+                                What's the sum of their
+                                <code>data-value</code> attributes?
+                            </p>
+                            <div class="d-none" title="This is the hidden element with the data-value attributes">
+                                <div class="" data-value="9">
+                                    <div class="bar baz" data-value="50"></div>
+                                    <div class="" data-value="49"></div>
+                                </div>
+                                <div class="bar foo baz" data-value="99">
+                                    <div class="bar foo baz" data-value="37"></div>
+                                    <div class="bar" data-value="9"></div>
+                                    <span data-value="foo bar" class="bar"></span>
+                                    <div class="baz" data-value="81">
+                                        <div class="bar foo baz" data-value="16"></div>
+                                        <div class="foo bar" data-value="79"></div>
+                                    </div>
+                                </div>
+                                <div class="bar" data-value="28">
+                                    <div class="baz" data-value="56"></div>
+                                    <div class="bar foo baz" data-value="12"></div>
+                                </div>
+                                <div class="foo bar" data-value="42">
+                                    <div class="bar" data-value="19"></div>
+                                    <div class="bar foo baz" data-value="69"></div>
+                                </div>
+                            </div>
+
+                            <label class="form-label" for="q-css-selectors">Sum of data-value attributes:</label>
+                            <input class="form-control" id="q-css-selectors" name="q-css-selectors" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-css-selectors"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-unicode-data" id="hq-unicode-data">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->12</span>
+                        <!--?lit$236787353$-->Process files with different encodings (<!--?lit$236787353$-->1
+                        <!--?lit$236787353$-->mark)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>Unicode</h2>
+                        <p>Ever noticed when you copy-paste some text and get garbage symbols? Or see garbage when you
+                            load a CSV file? This video explains why. It covers how computers store text (called
+                            character encoding) and why it sometimes goes wonky.</p>
+                        <p>Learn about ASCII (the original 7-bit encoding system that could only handle 128 characters),
+                            why that wasn't enough for global languages, and how modern solutions like Unicode save the
+                            day by letting us use any character from any language.</p>
+                        <p>Some programs try to guess encodings (sometimes badly!). A signature called BOM (Byte Order
+                            Mark)helps computers know exactly how to read text files correctly.</p>
+                        <p>Learn how Unicode, UTF-8 and character encoding works. This is a common gotcha when building
+                            apps that handle international text - something bootcamps often skip but developers and data
+                            scientists regularly face in the real world.</p>
+                        <p>Unicode is fundamental for data scientists working with international data. Here are key
+                            concepts you need to understand:</p>
+                        <ul>
+                            <li><strong>Character Encodings</strong>: Different ways to represent text in computers<ul>
+                                    <li>ASCII (7-bit): Limited to 128 characters, English-only</li>
+                                    <li>UTF-8: Variable-width encoding, backwards compatible with ASCII</li>
+                                    <li>UTF-16: Fixed-width encoding, used in Windows and Java</li>
+                                    <li>UTF-32: Fixed-width encoding, memory inefficient but simple</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p>Common encoding issues you'll encounter:</p>
+                        <pre><code class="language-python hljs" data-highlighted="yes"><span class="hljs-comment"># Reading files with explicit encoding</span>
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'file.txt'</span>, encoding=<span class="hljs-string">'utf-8'</span>) <span class="hljs-keyword">as</span> f:
+    text = f.read()
+
+<span class="hljs-comment"># Handling encoding errors</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+df = pd.read_csv(<span class="hljs-string">'data.csv'</span>, encoding=<span class="hljs-string">'utf-8'</span>, errors=<span class="hljs-string">'replace'</span>)
+
+<span class="hljs-comment"># Detecting file encoding</span>
+<span class="hljs-keyword">import</span> chardet
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">'unknown.txt'</span>, <span class="hljs-string">'rb'</span>) <span class="hljs-keyword">as</span> f:
+    result = chardet.detect(f.read())
+<span class="hljs-built_in">print</span>(result[<span class="hljs-string">'encoding'</span>])
+</code></pre>
+                        <p><a href="https://youtu.be/jeIBNn5Y5fI" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/jeIBNn5Y5fI/sddefault.webp"
+                                    alt="Code Pages, Character Encoding, Unicode, UTF-8 and the BOM - Computer Stuff They Didn't Teach You #2 (17 min)"
+                                    class="img-fluid"></a></p>
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Download and process the files in
+                                <button class="btn btn-sm btn-outline-primary" type="button">
+                                    <!--?lit$236787353$-->q-unicode-data.zip
+                                </button>
+                                which contains three files with different encodings:
+                            </p>
+                            <ul>
+                                <li><code>data1.csv</code>: CSV file encoded in CP-1252</li>
+                                <li><code>data2.csv</code>: CSV file encoded in UTF-8</li>
+                                <li><code>data3.txt</code>: Tab-separated file encoded in UTF-16</li>
+                            </ul>
+                            <p>
+                                Each file has 2 columns: symbol and value. Sum up all the values where the symbol
+                                matches
+                                <code><!--?lit$236787353$-->Œ OR ™ OR †</code> across all three files.
+                            </p>
+                            <label class="form-label" for="q-unicode-data">What is the sum of all values associated with
+                                these symbols?</label>
+                            <input class="form-control" id="q-unicode-data" name="q-unicode-data" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-unicode-data"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-use-github" id="hq-use-github">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->13</span>
+                        <!--?lit$236787353$-->Use GitHub (<!--?lit$236787353$-->0.5 <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>Version Control: Git, GitHub</h2>
+                        <p><a href="https://git-scm.com/" target="_blank" rel="noopener noreferrer">Git</a> is the de
+                            facto standard for version control of software (and sometimes, data as well). It's a system
+                            that keeps track of changes you make to files and folders. It allows you to revert to a
+                            previous state, compare changes, etc. It's a central tool in any developer's workflow.</p>
+                        <p><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a> is the
+                            most popular hosting service for Git repositories. It's a website that shows your code,
+                            allows you to collaborate with others, and provides many useful tools for developers.</p>
+                        <p>Watch these introductory videos to learn the basics of Git and GitHub (98 min):</p>
+                        <p><a href="https://youtu.be/HVsySz-h9r4" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/HVsySz-h9r4/sddefault.webp"
+                                    alt="Git Tutorial for Beginners: Command-Line Fundamentals (30 min)"
+                                    class="img-fluid"></a></p>
+                        <p><a href="https://youtu.be/RGOj5yH7evk" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/RGOj5yH7evk/sddefault.webp"
+                                    alt="Git and GitHub for Beginners - Crash Course (68 min)" class="img-fluid"></a>
+                        </p>
+                        <p>Essential Git Commands:</p>
+                        <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-comment"># Repository Setup</span>
+git init                   <span class="hljs-comment"># Create new repo</span>
+git <span class="hljs-built_in">clone</span> url              <span class="hljs-comment"># Clone existing repo</span>
+git remote add origin url  <span class="hljs-comment"># Connect to remote</span>
+
+<span class="hljs-comment"># Basic Workflow</span>
+git status                 <span class="hljs-comment"># Check status</span>
+git add .                  <span class="hljs-comment"># Stage all changes</span>
+git commit -m <span class="hljs-string">"message"</span>    <span class="hljs-comment"># Commit changes</span>
+git push origin main       <span class="hljs-comment"># Push to remote</span>
+
+<span class="hljs-comment"># Branching</span>
+git branch                 <span class="hljs-comment"># List branches</span>
+git checkout -b feature    <span class="hljs-comment"># Create/switch branch</span>
+git merge feature          <span class="hljs-comment"># Merge branch</span>
+git rebase main            <span class="hljs-comment"># Rebase on main</span>
+
+<span class="hljs-comment"># History</span>
+git <span class="hljs-built_in">log</span> --oneline          <span class="hljs-comment"># View history</span>
+git diff commit1 commit2   <span class="hljs-comment"># Compare commits</span>
+git blame file             <span class="hljs-comment"># Show who changed what</span>
+</code></pre>
+                        <p>Best Practices:</p>
+                        <ol>
+                            <li>
+                                <p><strong>Commit Messages</strong></p>
+                                <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-comment"># Good commit message format</span>
+<span class="hljs-built_in">type</span>(scope): summary
+
+Detailed description of changes.
+
+<span class="hljs-comment"># Examples</span>
+feat(api): add user authentication
+fix(db): handle null values <span class="hljs-keyword">in</span> query
+</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Branching Strategy</strong></p>
+                                <ul>
+                                    <li>main: Production code</li>
+                                    <li>develop: Integration branch</li>
+                                    <li>feature/*: New features</li>
+                                    <li>hotfix/*: Emergency fixes</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <p><strong>Code Review</strong></p>
+                                <ul>
+                                    <li>Keep PRs small (&lt;400 lines)</li>
+                                    <li>Use draft PRs for WIP</li>
+                                    <li>Review your own code first</li>
+                                    <li>Respond to all comments</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <p>Essential Tools</p>
+                        <ul>
+                            <li><a href="https://desktop.github.com/" target="_blank" rel="noopener noreferrer">GitHub
+                                    Desktop</a>: GUI client</li>
+                            <li><a href="https://gitlens.amod.io/" target="_blank"
+                                    rel="noopener noreferrer">GitLens</a>: VS Code extension</li>
+                            <li><a href="https://cli.github.com/" target="_blank" rel="noopener noreferrer">gh</a>:
+                                GitHub CLI</li>
+                            <li><a href="https://pre-commit.com/" target="_blank"
+                                    rel="noopener noreferrer">pre-commit</a>: Git hooks</li>
+                        </ul>
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Let's make sure you know how to use GitHub.
+                                <a href="https://github.com/join">Create a GitHub account</a> if you don't have one.
+                                Create a new public
+                                repository. Commit a single JSON file called <code>email.json</code> with the value
+                                <code>{"email": "<!--?lit$236787353$-->22f2001640@ds.study.iitm.ac.in"}</code> and push
+                                it.
+                            </p>
+                            <label class="form-label" for="q-use-github">Enter the raw Github URL of
+                                <code>email.json</code> so we can verify it. (It might look like
+                                <code>https://raw.githubusercontent.com/[GITHUB ID]/[REPO NAME]/main/email.json</code>.)</label>
+                            <input class="form-control" id="q-use-github" name="q-use-github" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-use-github"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-replace-across-files" id="hq-replace-across-files">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->14</span>
+                        <!--?lit$236787353$-->Replace across files (<!--?lit$236787353$-->0.75
+                        <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>Terminal: Bash</h2>
+                        <p>UNIX shells are the de facto standard in the data science world and <a
+                                href="https://www.gnu.org/software/bash/" target="_blank"
+                                rel="noopener noreferrer">Bash</a> is the most popular.
+                            This is available by default on Mac and Linux.</p>
+                        <p>On Windows, install <a href="https://git-scm.com/downloads" target="_blank"
+                                rel="noopener noreferrer">Git Bash</a> or <a
+                                href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank"
+                                rel="noopener noreferrer">WSL</a> to get a UNIX shell.</p>
+                        <p>Watch this video to understand the basics of Bash and UNIX shell commands (75 min).</p>
+                        <p><a href="https://youtu.be/oxuRxtrO2Ag" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/oxuRxtrO2Ag/sddefault.webp"
+                                    alt="Beginner's Guide to the Bash Terminal (75 min)" class="img-fluid"></a></p>
+                        <p>Essential Commands:</p>
+                        <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-comment"># File Operations</span>
+<span class="hljs-built_in">ls</span> -la               <span class="hljs-comment"># List all files with details</span>
+<span class="hljs-built_in">cd</span> path/to/dir       <span class="hljs-comment"># Change directory</span>
+<span class="hljs-built_in">pwd</span>                  <span class="hljs-comment"># Print working directory</span>
+<span class="hljs-built_in">cp</span> <span class="hljs-built_in">source</span> dest       <span class="hljs-comment"># Copy files</span>
+<span class="hljs-built_in">mv</span> <span class="hljs-built_in">source</span> dest       <span class="hljs-comment"># Move/rename files</span>
+<span class="hljs-built_in">rm</span> -rf <span class="hljs-built_in">dir</span>           <span class="hljs-comment"># Remove directory recursively</span>
+
+<span class="hljs-comment"># Text Processing</span>
+grep <span class="hljs-string">"pattern"</span> file  <span class="hljs-comment"># Search for pattern</span>
+sed <span class="hljs-string">'s/old/new/'</span> f   <span class="hljs-comment"># Replace text</span>
+awk <span class="hljs-string">'{print $1}'</span> f   <span class="hljs-comment"># Process text by columns</span>
+<span class="hljs-built_in">cat</span> file | <span class="hljs-built_in">wc</span> -l     <span class="hljs-comment"># Count lines</span>
+
+<span class="hljs-comment"># Process Management</span>
+ps aux               <span class="hljs-comment"># List processes</span>
+<span class="hljs-built_in">kill</span> -9 PID          <span class="hljs-comment"># Force kill process</span>
+top                  <span class="hljs-comment"># Monitor processes</span>
+htop                 <span class="hljs-comment"># Interactive process viewer</span>
+
+<span class="hljs-comment"># Network</span>
+curl url             <span class="hljs-comment"># HTTP requests</span>
+wget url             <span class="hljs-comment"># Download files</span>
+nc -zv host port     <span class="hljs-comment"># Test connectivity</span>
+ssh user@host        <span class="hljs-comment"># Remote login</span>
+
+<span class="hljs-comment"># Count unique values in CSV column</span>
+<span class="hljs-built_in">cut</span> -d<span class="hljs-string">','</span> -f1 data.csv | <span class="hljs-built_in">sort</span> | <span class="hljs-built_in">uniq</span> -c
+
+<span class="hljs-comment"># Quick data analysis</span>
+awk -F<span class="hljs-string">','</span> <span class="hljs-string">'{sum+=$2} END {print sum/NR}'</span> data.csv  <span class="hljs-comment"># Average</span>
+<span class="hljs-built_in">sort</span> -t<span class="hljs-string">','</span> -k2 -n data.csv | <span class="hljs-built_in">head</span>                  <span class="hljs-comment"># Top 10</span>
+
+<span class="hljs-comment"># Monitor log in real-time</span>
+<span class="hljs-built_in">tail</span> -f log.txt | grep --color <span class="hljs-string">'ERROR'</span>
+</code></pre>
+                        <p>Bash Scripting Essentials:</p>
+                        <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-meta">#!/bin/bash</span>
+
+<span class="hljs-comment"># Variables</span>
+NAME=<span class="hljs-string">"value"</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$NAME</span>
+
+<span class="hljs-comment"># Loops</span>
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> {1..5}; <span class="hljs-keyword">do</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-variable">$i</span>
+<span class="hljs-keyword">done</span>
+
+<span class="hljs-comment"># Conditionals</span>
+<span class="hljs-keyword">if</span> [ -f <span class="hljs-string">"file.txt"</span> ]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"File exists"</span>
+<span class="hljs-keyword">fi</span>
+
+<span class="hljs-comment"># Functions</span>
+<span class="hljs-function"><span class="hljs-title">process_data</span></span>() {
+    <span class="hljs-built_in">local</span> input=<span class="hljs-variable">$1</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"Processing <span class="hljs-variable">$input</span>"</span>
+}
+</code></pre>
+                        <p>Productivity Tips:</p>
+                        <ol>
+                            <li>
+                                <p><strong>Command History</strong></p>
+                                <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">history</span>         <span class="hljs-comment"># Show command history</span>
+Ctrl+R         <span class="hljs-comment"># Search history</span>
+!!             <span class="hljs-comment"># Repeat last command</span>
+!$             <span class="hljs-comment"># Last argument</span>
+</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Directory Navigation</strong></p>
+                                <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">pushd</span> <span class="hljs-built_in">dir</span>      <span class="hljs-comment"># Push directory to stack</span>
+<span class="hljs-built_in">popd</span>           <span class="hljs-comment"># Pop directory from stack</span>
+<span class="hljs-built_in">cd</span> -           <span class="hljs-comment"># Go to previous directory</span>
+</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Job Control</strong></p>
+                                <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">command</span> &amp;      <span class="hljs-comment"># Run in background</span>
+Ctrl+Z         <span class="hljs-comment"># Suspend process</span>
+<span class="hljs-built_in">bg</span>             <span class="hljs-comment"># Resume in background</span>
+<span class="hljs-built_in">fg</span>             <span class="hljs-comment"># Resume in foreground</span>
+</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Useful Aliases</strong> - typically added to <code>~/.bashrc</code></p>
+                                <pre><code class="language-bash hljs" data-highlighted="yes"><span class="hljs-built_in">alias</span> ll=<span class="hljs-string">'ls -la'</span>
+<span class="hljs-built_in">alias</span> gs=<span class="hljs-string">'git status'</span>
+<span class="hljs-built_in">alias</span> jupyter=<span class="hljs-string">'jupyter notebook'</span>
+<span class="hljs-built_in">alias</span> activate=<span class="hljs-string">'source venv/bin/activate'</span>
+</code></pre>
+                            </li>
+                        </ol>
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Download
+                                <button class="btn btn-sm btn-outline-primary" type="button">
+                                    <!--?lit$236787353$-->q-replace-across-files.zip
+                                </button>
+                                and unzip it into a new folder, then replace all "IITM" (in upper, lower, or mixed case)
+                                with "IIT Madras" in
+                                <strong>all files</strong>. Leave everything as-is - don't change the
+                                <a href="https://stackoverflow.com/a/39532890/100904">line endings</a>.
+                            </p>
+
+                            <label class="form-label" for="q-replace-across-files">
+                                What does running <code>cat * | sha256sum</code> in that folder show in bash?
+                            </label>
+                            <input class="form-control" id="q-replace-across-files" name="q-replace-across-files"
+                                disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer"
+                            data-question="q-replace-across-files" disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-list-files-attributes" id="hq-list-files-attributes">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->15</span>
+                        <!--?lit$236787353$-->List files and attributes (<!--?lit$236787353$-->0.75
+                        <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$-->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Download
+                                <button class="btn btn-sm btn-outline-primary" type="button">
+                                    <!--?lit$236787353$-->q-list-files-attributes.zip
+                                </button>
+                                and extract it. Use <code>ls</code> with options to list all files in the folder along
+                                with their date and file
+                                size.
+                            </p>
+
+                            <label class="form-label" for="q-list-files-attributes">
+                                What's the total size of all files at least <!--?lit$236787353$-->3352 bytes large and
+                                modified on or after
+                                <!--?lit$236787353$-->Fri, 17 Aug, 2018, 4:06 am IST?
+                            </label>
+                            <input class="form-control" id="q-list-files-attributes" name="q-list-files-attributes"
+                                disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                            <p class="text-muted">
+                                Don't <strong>copy</strong> from inside the ZIP file or use Windows Explorer to unzip.
+                                That destroys the
+                                timestamps. Extract using <code>unzip</code>, <code>7-Zip</code> or similar utilities
+                                and
+                                <em>check the timestamps</em>.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer"
+                            data-question="q-list-files-attributes" disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-move-rename-files" id="hq-move-rename-files">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->16</span>
+                        <!--?lit$236787353$-->Move and rename files (<!--?lit$236787353$-->0.5
+                        <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$-->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Download
+                                <button class="btn btn-sm btn-outline-primary" type="button">
+                                    <!--?lit$236787353$-->q-move-rename-files.zip
+                                </button>
+                                and extract it. Use <code>mv</code> to move all files under folders into an empty
+                                folder. Then rename all files
+                                replacing each digit with the next. 1 becomes 2, 9 becomes 0, <code>a1b9c.txt</code>
+                                becomes
+                                <code>a2b0c.txt</code>.
+                            </p>
+
+                            <label class="form-label" for="q-move-rename-files">
+                                What does running <code>grep . * | LC_ALL=C sort | sha256sum</code> in <code>bash</code>
+                                on that folder show?
+                            </label>
+                            <input class="form-control" id="q-move-rename-files" name="q-move-rename-files" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-move-rename-files"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-compare-files" id="hq-compare-files">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->17</span>
+                        <!--?lit$236787353$-->Compare files (<!--?lit$236787353$-->0.5 <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$-->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <div class="mb-3">
+                            <p>
+                                Download
+                                <button class="btn btn-sm btn-outline-primary" type="button">
+                                    <!--?lit$236787353$-->q-compare-files.zip
+                                </button>
+                                and extract it. It has 2 nearly identical files, <code>a.txt</code> and
+                                <code>b.txt</code>, with the same number
+                                of lines.
+                            </p>
+
+                            <label class="form-label" for="q-compare-files">
+                                How many lines are different between <code>a.txt</code> and <code>b.txt</code>?
+                            </label>
+                            <input class="form-control" id="q-compare-files" name="q-compare-files" disabled="">
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-compare-files"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!----><!---->
+                <div class="card my-5" data-question="q-sql-ticket-sales" id="hq-sql-ticket-sales">
+                    <div class="card-header">
+                        <span class="badge text-bg-primary me-2"><!--?lit$236787353$-->18</span>
+                        <!--?lit$236787353$-->SQL: Ticket Sales (<!--?lit$236787353$-->0.75 <!--?lit$236787353$-->marks)
+                    </div>
+                    <!--?lit$236787353$--><!---->
+                    <div class="card-body border-bottom"><!--?lit$236787353$-->
+                        <h2>Database: SQLite</h2>
+                        <p>Relational databases are used to store data in a structured way. You'll often access
+                            databases created by others for analysis.</p>
+                        <p>PostgreSQL, MySQL, MS SQL, Oracle, etc. are popular databases. But the most installed
+                            database is <a href="https://www.sqlite.org/index.html" target="_blank"
+                                rel="noopener noreferrer">SQLite</a>. It's embedded into many devices and apps (e.g.
+                            your phone, browser, etc.). It's lightweight but very scalable and powerful.</p>
+                        <p>Watch these introductory videos to understand SQLite and how it's used in Python (34 min):
+                        </p>
+                        <p><a href="https://youtu.be/8Xyn8R9eKB8" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/8Xyn8R9eKB8/sddefault.webp"
+                                    alt="SQLite Introduction - Beginners Guide to SQL and Databases (22 min)"
+                                    class="img-fluid"></a></p>
+                        <p><a href="https://youtu.be/Ohj-CqALrwk" target="_blank" rel="noopener noreferrer"><img
+                                    src="https://i.ytimg.com/vi_webp/Ohj-CqALrwk/sddefault.webp"
+                                    alt="SQLite Backend for Beginners - Create Quick Databases with Python and SQL (13 min)"
+                                    class="img-fluid"></a></p>
+                        <p>There are many non-relational databases (NoSQL) like <a
+                                href="https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html"
+                                target="_blank" rel="noopener noreferrer">ElasticSearch</a>, <a
+                                href="https://www.mongodb.com/docs/manual/" target="_blank"
+                                rel="noopener noreferrer">MongoDB</a>, <a href="https://redis.io/docs/latest/"
+                                target="_blank" rel="noopener noreferrer">Redis</a>, etc. that you should know about and
+                            we may cover later.</p>
+                        <p>Core Concepts:</p>
+                        <pre><code class="language-sql hljs" data-highlighted="yes"><span class="hljs-comment">-- Create a table</span>
+<span class="hljs-keyword">CREATE TABLE</span> users (
+    id <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">PRIMARY KEY</span>,
+    name TEXT <span class="hljs-keyword">NOT NULL</span>,
+    email TEXT <span class="hljs-keyword">UNIQUE</span>,
+    created_at DATETIME <span class="hljs-keyword">DEFAULT</span> <span class="hljs-built_in">CURRENT_TIMESTAMP</span>
+);
+
+<span class="hljs-comment">-- Insert data</span>
+<span class="hljs-keyword">INSERT INTO</span> users (name, email) <span class="hljs-keyword">VALUES</span>
+    (<span class="hljs-string">'Alice'</span>, <span class="hljs-string">'alice@example.com'</span>),
+    (<span class="hljs-string">'Bob'</span>, <span class="hljs-string">'bob@example.com'</span>);
+
+<span class="hljs-comment">-- Query data</span>
+<span class="hljs-keyword">SELECT</span> name, <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">as</span> count
+<span class="hljs-keyword">FROM</span> users
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> name
+<span class="hljs-keyword">HAVING</span> count <span class="hljs-operator">&gt;</span> <span class="hljs-number">1</span>;
+
+<span class="hljs-comment">-- Join tables</span>
+<span class="hljs-keyword">SELECT</span> u.name, o.product
+<span class="hljs-keyword">FROM</span> users u
+<span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">JOIN</span> orders o <span class="hljs-keyword">ON</span> u.id <span class="hljs-operator">=</span> o.user_id
+<span class="hljs-keyword">WHERE</span> o.status <span class="hljs-operator">=</span> <span class="hljs-string">'pending'</span>;
+</code></pre>
+                        <p>Python Integration:</p>
+                        <pre><code class="language-python hljs" data-highlighted="yes"><span class="hljs-keyword">import</span> sqlite3
+<span class="hljs-keyword">from</span> pathlib <span class="hljs-keyword">import</span> Path
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">def</span> <span class="hljs-title function_">query_database</span>(<span class="hljs-params">db_path: Path, query: <span class="hljs-built_in">str</span></span>) -&gt; pd.DataFrame:
+    <span class="hljs-string">"""Execute SQL query and return results as DataFrame.
+
+    Args:
+        db_path: Path to SQLite database
+        query: SQL query to execute
+
+    Returns:
+        DataFrame with query results
+    """</span>
+    <span class="hljs-keyword">try</span>:
+        conn = sqlite3.connect(db_path)
+        <span class="hljs-keyword">return</span> pd.read_sql_query(query, conn)
+    <span class="hljs-keyword">finally</span>:
+        conn.close()
+
+<span class="hljs-comment"># Example usage</span>
+db = Path(<span class="hljs-string">'data.db'</span>)
+df = <span class="hljs-keyword">await</span> query_database(db, <span class="hljs-string">'''
+    SELECT date, COUNT(*) as count
+    FROM events
+    GROUP BY date
+'''</span>)
+</code></pre>
+                        <p>Common Operations:</p>
+                        <ol>
+                            <li>
+                                <p><strong>Database Management</strong></p>
+                                <pre><code class="language-sql hljs" data-highlighted="yes"><span class="hljs-comment">-- Backup database</span>
+.backup <span class="hljs-string">'backup.db'</span>
+
+<span class="hljs-comment">-- Import CSV</span>
+.mode csv
+.import data.csv table_name
+
+<span class="hljs-comment">-- Export results</span>
+.headers <span class="hljs-keyword">on</span>
+.mode csv
+.output results.csv
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">table</span>;
+</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Performance Optimization</strong></p>
+                                <pre><code class="language-sql hljs" data-highlighted="yes"><span class="hljs-comment">-- Create index</span>
+<span class="hljs-keyword">CREATE</span> INDEX idx_user_email <span class="hljs-keyword">ON</span> users(email);
+
+<span class="hljs-comment">-- Analyze query</span>
+EXPLAIN QUERY PLAN
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> users <span class="hljs-keyword">WHERE</span> email <span class="hljs-keyword">LIKE</span> <span class="hljs-string">'%@example.com'</span>;
+
+<span class="hljs-comment">-- Show indexes</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> sqlite_master <span class="hljs-keyword">WHERE</span> type<span class="hljs-operator">=</span><span class="hljs-string">'index'</span>;
+</code></pre>
+                            </li>
+                            <li>
+                                <p><strong>Data Analysis</strong></p>
+                                <pre><code class="language-sql hljs" data-highlighted="yes"><span class="hljs-comment">-- Time series aggregation</span>
+<span class="hljs-keyword">SELECT</span>
+    <span class="hljs-type">date</span>(<span class="hljs-type">timestamp</span>),
+    <span class="hljs-built_in">COUNT</span>(<span class="hljs-operator">*</span>) <span class="hljs-keyword">as</span> events,
+    <span class="hljs-built_in">AVG</span>(duration) <span class="hljs-keyword">as</span> avg_duration
+<span class="hljs-keyword">FROM</span> events
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-type">date</span>(<span class="hljs-type">timestamp</span>);
+
+<span class="hljs-comment">-- Window functions</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span>,
+    <span class="hljs-built_in">AVG</span>(amount) <span class="hljs-keyword">OVER</span> (
+        <span class="hljs-keyword">PARTITION</span> <span class="hljs-keyword">BY</span> user_id
+        <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-type">date</span>
+        <span class="hljs-keyword">ROWS</span> <span class="hljs-keyword">BETWEEN</span> <span class="hljs-number">3</span> PRECEDING <span class="hljs-keyword">AND</span> <span class="hljs-keyword">CURRENT</span> <span class="hljs-type">ROW</span>
+    ) <span class="hljs-keyword">as</span> moving_avg
+<span class="hljs-keyword">FROM</span> transactions;
+</code></pre>
+                            </li>
+                        </ol>
+                        <p>Tools to work with SQLite:</p>
+                        <ul>
+                            <li><a href="https://sqlitestudio.pl/" target="_blank"
+                                    rel="noopener noreferrer">SQLiteStudio</a>: Lightweight GUI</li>
+                            <li><a href="https://dbeaver.io/" target="_blank" rel="noopener noreferrer">DBeaver</a>:
+                                Full-featured GUI</li>
+                            <li><a href="https://sqlite-utils.datasette.io/" target="_blank"
+                                    rel="noopener noreferrer">sqlite-utils</a>: CLI tool</li>
+                            <li><a href="https://datasette.io/" target="_blank" rel="noopener noreferrer">Datasette</a>:
+                                Web interface</li>
+                        </ul>
+                    </div><!---->
+                    <div class="card-body"><!--?lit$236787353$-->
+                        <p>
+                            There is a <code>tickets</code> table in a SQLite database that has columns
+                            <code>type</code>, <code>units</code>,
+                            and <code>price</code>. Each row is a customer bid for a concert ticket.
+                        </p>
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>type</th>
+                                    <th>units</th>
+                                    <th>price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--?lit$236787353$--><!---->
+                                <tr>
+                                    <td><!--?lit$236787353$-->SILVER</td>
+                                    <td><!--?lit$236787353$-->591</td>
+                                    <td><!--?lit$236787353$-->1.69</td>
+                                </tr><!----><!---->
+                                <tr>
+                                    <td><!--?lit$236787353$-->Bronze</td>
+                                    <td><!--?lit$236787353$-->537</td>
+                                    <td><!--?lit$236787353$-->1.53</td>
+                                </tr><!----><!---->
+                                <tr>
+                                    <td><!--?lit$236787353$-->Gold</td>
+                                    <td><!--?lit$236787353$-->771</td>
+                                    <td><!--?lit$236787353$-->1.21</td>
+                                </tr><!----><!---->
+                                <tr>
+                                    <td><!--?lit$236787353$-->gold</td>
+                                    <td><!--?lit$236787353$-->565</td>
+                                    <td><!--?lit$236787353$-->1.42</td>
+                                </tr><!----><!---->
+                                <tr>
+                                    <td><!--?lit$236787353$-->Bronze</td>
+                                    <td><!--?lit$236787353$-->303</td>
+                                    <td><!--?lit$236787353$-->0.8</td>
+                                </tr><!---->
+                                <tr>
+                                    <td colspan="3">...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="mb-3">
+                            <label class="form-label" for="q-sql-ticket-sales">
+                                What is the total sales of all the items in the "Gold" ticket type? Write SQL to
+                                calculate it.</label>
+                            <textarea class="form-control font-monospace text-bg-dark" rows="6" id="q-sql-ticket-sales"
+                                name="q-sql-ticket-sales" disabled=""></textarea>
+                            <div class="valid-feedback mb-3 comment">Correct!</div>
+                            <div class="invalid-feedback mb-3 comment">Incorrect. Try again.</div>
+                            <p class="text-muted">
+                                Get all rows where the Type is "Gold". Ignore spaces and treat mis-spellings like GOLD,
+                                gold, etc. as "Gold".
+                                Calculate the sales as Units * Price, and sum them up.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex">
+                        <button type="button" class="btn btn-primary check-answer" data-question="q-sql-ticket-sales"
+                            disabled="">Check</button>
+                    </div>
+                </div>
+                <!---->
+            </section>
+            <button type="submit" class="btn btn-success check-action" title="Check your score" disabled="">Check
+                all</button>
+            <button type="button" class="btn btn-primary save-action" title="Save your progress"
+                disabled="">Save</button>
+            <div id="submission-status" class="my-3"></div>
+            <p>Save regularly. Your <em>last saved</em> submission will be evaluated.</p>
+        </form>
+
+        <footer class="my-5 d-flex align-items-center justify-content-center" style="height: 50vh;">
+            <h1 class="display-4">Best of luck!</h1>
+        </footer>
+    </main>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@gramex/ui@0.3/dist/dark-theme.js"
+        integrity="sha384-WWZYgp4BxSnWElq/A+SNJoNuJ5eZf6xBLqGUBHmu6QXN+9dqtz7bTtyuBwy9O7C+"
+        crossorigin="anonymous"></script>
+    <script src="https://accounts.google.com/gsi/client"></script>
+    <script type="module">
+        import { setup } from './exam.js';
+        setup(window.location.pathname.slice(1));
+    </script>
+
+
+
+</body>
+
+</html>

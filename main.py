@@ -1,8 +1,8 @@
-from fastapi import FastAPI, Form, File, UploadFile  
-from fastapi.responses import HTMLResponse  
-from fastapi.middleware.cors import CORSMiddleware  
+from fastapi import FastAPI, Form, File, UploadFile  # type: ignore
+from fastapi.responses import HTMLResponse  # type: ignore
+from fastapi.middleware.cors import CORSMiddleware  # type: ignore
 import os
-import openpyxl  
+import openpyxl  # type: ignore
 from processing import fetch_answer
 import re
 import stat
@@ -10,7 +10,7 @@ import json
 import base64
 from io import BytesIO
 from PIL import Image
-import httpx  
+import httpx  # type: ignore
 import aiofiles
 from typing import List
 from git_api import GA1_13, GA2_3, GA2_7, GA4_8, GA2_9_file, GA2_6_file
@@ -119,7 +119,7 @@ def Solve_Unknown_Task(question):
         "model": "gpt-4o-mini",
         "messages": [{"role": "user", "content": question+" return only the answer"}]
     }
-    API_KEY = os.getenv("OPENAI_API_KEY")
+    API_KEY = os.getenv("AIPROXY_TOKEN")
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {API_KEY}"
@@ -132,11 +132,11 @@ def Solve_Unknown_Task(question):
 
 @app.post("/api/")
 async def receive_question(question: str = Form(...), file: UploadFile = File(None)):
-     async def receive_question(question: str = Form(...), files: List[UploadFile] = File(None)):     # file = files[0]
+    # async def receive_question(question: str = Form(...), files: List[UploadFile] = File(None)):     # file = files[0]
 
-     if 'where is ' in question.lower():
-         file_path = get_file_path(question)
-         return {"question": question, "answer": file_path if file_path else "File not found"}
+    # if 'where is ' in question.lower():
+    #     file_path = get_file_path(question)
+    #     return {"question": question, "answer": file_path if file_path else "File not found"}
 
     task_id = classify_task(question)
     if task_id == "Unknown":
@@ -156,12 +156,12 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         else:
             answer = await read_answer(task_id=task_id, question=question)
     elif task_id in ['GA1.16']:
-        print(os.getenv('VERCEL'))
-        if file:
-            print(file)
-            answer = await fetch_answer(task_id=task_id, question=question, file_path=file)
-        else:
-            answer = await read_answer(task_id=task_id, question=question)
+        # print(os.getenv('VERCEL'))
+        #if file:
+        #    print(file)
+        #    answer = await fetch_answer(task_id=task_id, question=question, file_path=file)
+        #else:
+        #    answer = await read_answer(task_id=task_id, question=question)
         answer = await read_answer(task_id=task_id, question=question)  # Default behavior
     elif task_id in ['GA1.8', 'GA1.10', 'GA1.12', 'GA1.14', 'GA1.15', 'GA1.17']:
         if file:
@@ -177,13 +177,13 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         answer = func_answer or await read_answer(task_id=task_id, question=question)
     elif task_id in ['GA1.13']:
         answer = GA1_13(question)
-        answer = "https://raw.githubusercontent.com/Telvinvarghese/Test/main/email.json"
+        # answer = "https://raw.githubusercontent.com/Telvinvarghese/Test/main/email.json"
     elif task_id in ['GA2.1']:
         answer = await read_answer(task_id=task_id, question=question)
     elif task_id in ['GA2.3']:
         answer = "https://tusharisme.github.io/tds_work"
-        answer = GA2_3(question)
-        answer = "https://telvinvarghese.github.io/website/"
+        #answer = GA2_3(question)
+        # answer = "https://telvinvarghese.github.io/website/"
     elif task_id in ['GA2.2', 'GA2.4']:
         if file:
             print(file)
@@ -207,29 +207,29 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
             )
     elif task_id in ['GA2.6']:
         answer = "https://api-git-main-telvinvargheses-projects.vercel.app/api"
-        print(file)
-        file_content = await file.read()
-        flag = await GA2_6_file(file)
-        if flag == "True":
-            answer = "https://api-git-main-telvinvargheses-projects.vercel.app/api"
-        else:
-            answer = "https://api-git-main-telvinvargheses-projects.vercel.app/api"
+        #print(file)
+        # file_content = await file.read()
+        #flag = await GA2_6_file(file)
+        #if flag == "True":
+        #    answer = "https://api-git-main-telvinvargheses-projects.vercel.app/api"
+        #else:
+        #    answer = "https://api-git-main-telvinvargheses-projects.vercel.app/api"
     elif task_id in ['GA2.7']:
         answer = "https://github.com/Tusharisme/pyth"
-        answer = GA2_7(question)
-        answer = "https://github.com/Telvinvarghese/Test"
+        # answer = GA2_7(question)
+        # answer = "https://github.com/Telvinvarghese/Test"
     elif task_id in ['GA2.8']:
         answer = "https://hub.docker.com/repository/docker/tushar2k5/my_image/general"
     elif task_id in ['GA2.9']:
         answer = "https://tds-ga2-9.vercel.app/api"
 
-         print(file)
-         file_content = await file.read() 
-         flag = await GA2_9_file(file)
-         if flag == "True":
-             answer = "https://tds-ga2-9.vercel.app/api"
-         else:
-             answer = "https://tds-ga2-9.vercel.app/api"
+        # print(file)
+        # # file_content = await file.read() 
+        # flag = await GA2_9_file(file)
+        # if flag == "True":
+        #     answer = "https://tds-ga2-9.vercel.app/api"
+        # else:
+        #     answer = "https://tds-ga2-9.vercel.app/api"
     elif task_id in ['GA2.10']:
         answer = "https://b45f-223-178-84-140.ngrok-free.app/"
     elif task_id in ["GA3.1", "GA3.2", "GA3.3", "GA3.5", "GA3.6"]:
@@ -252,7 +252,7 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         answer = "https://tds-ga4-3.vercel.app/api/outline"
     elif task_id in ['GA4.8']:
         answer = GA4_8(question)
-         answer = "https://github.com/Telvinvarghese/Test"
+        # answer = "https://github.com/Telvinvarghese/Test"
     elif task_id in ['GA4.9']:
         if file:
             print(file)
@@ -269,11 +269,11 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
             answer = await read_answer(task_id=task_id, question=question)
     elif task_id in ['GA5.3', 'GA5.4']:
         answer = await fetch_answer(task_id=task_id, question=question, file_path="")
-         if file:
-             print(file)
-             answer = await fetch_answer(task_id=task_id, question=question, file_path=file)
-         else:
-             answer = await fetch_answer(task_id=task_id, question=question, file_path="")
+        # if file:
+        #     print(file)
+        #     answer = await fetch_answer(task_id=task_id, question=question, file_path=file)
+        # else:
+        #     answer = await fetch_answer(task_id=task_id, question=question, file_path="")
     elif task_id in ['GA5.8']:
         answer = await fetch_answer(task_id=task_id, question=question, file_path="")
     elif task_id in ['GA5.9']:
@@ -282,16 +282,16 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         if file:
             print(file)
             answer = await fetch_answer(task_id=task_id, question=question, file_path=file)
-            image_url = f"data:image/png;base64,{answer}"
-            print(image_url)
-            img_data = base64.b64decode(answer)
-            img = Image.open(BytesIO(img_data))
-            img.show()
-            with open("reconstructed_image.png", "wb") as f:
-                 f.write(img_data)
+            # image_url = f"data:image/png;base64,{answer}"
+            # print(image_url)
+            # img_data = base64.b64decode(answer)
+            # img = Image.open(BytesIO(img_data))
+            # img.show()
+            # with open("reconstructed_image.png", "wb") as f:
+            #     f.write(img_data)
     else:
         if file:
-            file_path = save_file(file)
+            # file_path = save_file(file)
             print(file)
             file_path = file
         answer = await read_answer(task_id=task_id, question=question)

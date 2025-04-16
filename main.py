@@ -1,8 +1,8 @@
-from fastapi import FastAPI, Form, File, UploadFile  # type: ignore
-from fastapi.responses import HTMLResponse  # type: ignore
-from fastapi.middleware.cors import CORSMiddleware  # type: ignore
+from fastapi import FastAPI, Form, File, UploadFile  
+from fastapi.responses import HTMLResponse  
+from fastapi.middleware.cors import CORSMiddleware  
 import os
-import openpyxl  # type: ignore
+import openpyxl  
 from processing import fetch_answer
 import re
 import stat
@@ -10,7 +10,7 @@ import json
 import base64
 from io import BytesIO
 from PIL import Image
-import httpx  # type: ignore
+import httpx  
 import aiofiles
 from typing import List
 from git_api import GA1_13, GA2_3, GA2_7, GA4_8, GA2_9_file, GA2_6_file

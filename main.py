@@ -84,7 +84,7 @@ def get_file_path(question: str) -> str:
     return file_path if file_path and os.path.exists(file_path) else None
 
 
-@app.post("/", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 async def serve_form():
     file_path = os.path.join(os.path.dirname(__file__), "index.html")
     try:
@@ -130,7 +130,7 @@ def Solve_Unknown_Task(question):
     return response.json().get("choices", [])[0].get("message", {}).get("content")
 
 
-@app.get("/api/")
+@app.post("/api/")
 async def receive_question(question: str = Form(...), file: UploadFile = File(None)):
     # async def receive_question(question: str = Form(...), files: List[UploadFile] = File(None)):     # file = files[0]
 

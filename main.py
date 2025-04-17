@@ -299,6 +299,10 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         print(response)
         return response
 
+    @app.get("/api/")
+async def api_get_fallback():
+    return {"message": "Use POST method to submit a question."}
+    
     actual_answer = answer
     answer = to_string(answer)
     output = {"question": question, "task": task_id, "answer": answer,

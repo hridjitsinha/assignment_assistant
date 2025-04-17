@@ -130,7 +130,7 @@ def Solve_Unknown_Task(question):
     return response.json().get("choices", [])[0].get("message", {}).get("content")
 
 
-@app.post("/api/")
+@app.get("/api/")
 async def receive_question(question: str = Form(...), file: UploadFile = File(None)):
     # async def receive_question(question: str = Form(...), files: List[UploadFile] = File(None)):     # file = files[0]
 

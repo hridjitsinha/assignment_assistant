@@ -132,11 +132,11 @@ def Solve_Unknown_Task(question):
 
 @app.post("/api/")
 async def receive_question(question: str = Form(...), file: UploadFile = File(None)):
-    # async def receive_question(question: str = Form(...), files: List[UploadFile] = File(None)):     # file = files[0]
+    async def receive_question(question: str = Form(...), files: List[UploadFile] = File(None)):     # file = files[0]
 
-    # if 'where is ' in question.lower():
-    #     file_path = get_file_path(question)
-    #     return {"question": question, "answer": file_path if file_path else "File not found"}
+    if 'where is ' in question.lower():
+         file_path = get_file_path(question)
+         return {"question": question, "answer": file_path if file_path else "File not found"}
 
     task_id = classify_task(question)
     if task_id == "Unknown":
@@ -156,12 +156,12 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         else:
             answer = await read_answer(task_id=task_id, question=question)
     elif task_id in ['GA1.16']:
-        # print(os.getenv('VERCEL'))
-        #if file:
-        #    print(file)
-        #    answer = await fetch_answer(task_id=task_id, question=question, file_path=file)
-        #else:
-        #    answer = await read_answer(task_id=task_id, question=question)
+        print(os.getenv('VERCEL'))
+        if file:
+            print(file)
+            answer = await fetch_answer(task_id=task_id, question=question, file_path=file)
+        else:
+            answer = await read_answer(task_id=task_id, question=question)
         answer = await read_answer(task_id=task_id, question=question)  # Default behavior
     elif task_id in ['GA1.8', 'GA1.10', 'GA1.12', 'GA1.14', 'GA1.15', 'GA1.17']:
         if file:
@@ -177,13 +177,10 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         answer = func_answer or await read_answer(task_id=task_id, question=question)
     elif task_id in ['GA1.13']:
         answer = GA1_13(question)
-        # answer = "https://raw.githubusercontent.com/Telvinvarghese/Test/main/email.json"
     elif task_id in ['GA2.1']:
         answer = await read_answer(task_id=task_id, question=question)
     elif task_id in ['GA2.3']:
-        answer = "https://tusharisme.github.io/tds_work"
-        #answer = GA2_3(question)
-        # answer = "https://telvinvarghese.github.io/website/"
+        answer = GA2_3(question)
     elif task_id in ['GA2.2', 'GA2.4']:
         if file:
             print(file)
@@ -215,9 +212,7 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         #else:
         #    answer = "https://api-git-main-telvinvargheses-projects.vercel.app/api"
     elif task_id in ['GA2.7']:
-        answer = "https://github.com/Tusharisme/pyth"
-        # answer = GA2_7(question)
-        # answer = "https://github.com/Telvinvarghese/Test"
+        answer = GA2_7(question)
     elif task_id in ['GA2.8']:
         answer = "https://hub.docker.com/repository/docker/tushar2k5/my_image/general"
     elif task_id in ['GA2.9']:
@@ -269,11 +264,11 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
             answer = await read_answer(task_id=task_id, question=question)
     elif task_id in ['GA5.3', 'GA5.4']:
         answer = await fetch_answer(task_id=task_id, question=question, file_path="")
-        # if file:
-        #     print(file)
-        #     answer = await fetch_answer(task_id=task_id, question=question, file_path=file)
-        # else:
-        #     answer = await fetch_answer(task_id=task_id, question=question, file_path="")
+         if file:
+             print(file)
+             answer = await fetch_answer(task_id=task_id, question=question, file_path=file)
+         else:
+             answer = await fetch_answer(task_id=task_id, question=question, file_path="")
     elif task_id in ['GA5.8']:
         answer = await fetch_answer(task_id=task_id, question=question, file_path="")
     elif task_id in ['GA5.9']:
@@ -299,9 +294,6 @@ async def receive_question(question: str = Form(...), file: UploadFile = File(No
         print(response)
         return response
 
-    @app.get("/api/")
-async def api_get_fallback():
-    return {"message": "Use POST method to submit a question."}
     
     actual_answer = answer
     answer = to_string(answer)
